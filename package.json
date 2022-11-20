@@ -11,7 +11,7 @@
     "build:docker": "docker build -t europe-west1-docker.pkg.dev/emre-aksoy/docker/hello-world .",
     "build": "npm run build:tsc && npm run build:docker",
     "deploy:container": "docker push europe-west1-docker.pkg.dev/emre-aksoy/docker/hello-world",
-    "deploy:k8s": "kubectl apply -f ./k8s",
+    "deploy:k8s": "kubectl apply -f ./k8s && kubectl rollout restart deployment hello-world-deployment",
     "deploy": "npm run build && npm run deploy:container && npm run deploy:k8s"
   },
   "repository": {
