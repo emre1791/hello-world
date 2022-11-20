@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-world-deployment
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: hello-world-deployment
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        name: hello-world-deployment
+    spec:
+      containers:
+        - image: europe-west1-docker.pkg.dev/emre-aksoy/docker/hello-world
+          imagePullPolicy: Always
+          name: hello-world-1
+          resources:
+            limits:
+              cpu: 100m
+              memory: "100Mi"
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
