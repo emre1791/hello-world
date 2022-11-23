@@ -6,7 +6,7 @@ metadata:
 spec:
   secretName: eaksy-com-tls
   issuerRef:
-    name: cluster-issuer
+    name: default-issuer
     kind: ClusterIssuer
   dnsNames:
     - eaksy.com
